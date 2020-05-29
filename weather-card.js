@@ -98,7 +98,6 @@ class WeatherCard extends LitElement {
     }
 
     var stateObj = this.hass.states[this._config.entity];
-    var day = "";
 
     for (var i = 0; i <= 3; i++) {
       let rain_rate_am = this.hass.states["weather.naverweather"].attributes
