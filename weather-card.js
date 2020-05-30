@@ -128,18 +128,22 @@ class WeatherCard extends LitElement {
 
     const Grade_No = { 좋음: 1, 보통: 2, 나쁨: 3, "매우 나쁨": 4, 알수없음: 0 };
 
-    const pm10_value = Math.round(
-      this.hass.states["sensor.airkorea_pm10"].state
+    const pm10_value = Number(
+      this.hass.states["sensor.naver_weather"].attributes.미세먼지.split(
+        "㎍/㎥"
+      )[0]
     );
-    const pm25_value = Math.round(
-      this.hass.states["sensor.airkorea_pm25"].state
+    const pm25_value = Number(
+      this.hass.states["sensor.naver_weather"].attributes.초미세먼지.split(
+        "㎍/㎥"
+      )[0]
     );
-    const pm10_grade = this.hass.states["sensor.airkorea_pm10_grade_1h"].state;
-    const pm25_grade = this.hass.states["sensor.airkorea_pm25_grade_1h"].state;
-    const pm10_grade_no =
-      Grade_No[this.hass.states["sensor.airkorea_pm10_grade_1h"].state];
-    const pm25_grade_no =
-      Grade_No[this.hass.states["sensor.airkorea_pm25_grade_1h"].state];
+    const pm10_grade = this.hass.states["sensor.naver_weather"].attributes
+      .미세먼지등급;
+    const pm25_grade = this.hass.states["sensor.naver_weather"].attributes
+      .초미세먼지등급;
+    const pm10_grade_no = Grade_No[pm10_grade];
+    const pm25_grade_no = Grade_No[pm25_grade];
 
     if (!stateObj) {
       return html`
